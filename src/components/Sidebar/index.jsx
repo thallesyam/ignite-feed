@@ -1,4 +1,7 @@
 import { PencilLine } from "phosphor-react"
+
+import { Avatar } from "../Avatar"
+
 import style from "./style.module.css"
 
 const backgroundUrl =
@@ -12,7 +15,7 @@ export function Sidebar() {
       <img className={style.cover} src={backgroundUrl} />
 
       <div className={style.profile}>
-        <img className={style.avatar} src={userImageUrl} />
+        <Avatar avatarUrl={userImageUrl} />
         <strong>Thalles Ian</strong>
         <span>Frontend Developer</span>
       </div>
