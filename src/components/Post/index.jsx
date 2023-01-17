@@ -1,4 +1,5 @@
 import { Author } from "../Author"
+import { Comment } from "../Comment"
 
 import style from "./style.module.css"
 
@@ -47,6 +48,10 @@ export function Post() {
           <button type="submit">Publicar</button>
         </footer>
       </form>
+
+      <div className={style.commentList}>
+        <Comment />
+      </div>
     </article>
   )
 }
