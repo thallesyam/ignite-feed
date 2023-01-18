@@ -77,13 +77,12 @@
   border: 0;
   color: var(--white);
   font-weight: bold;
-  cursor: pointer;
   background-color: var(--green-500);
   transition: background-color 0.1s;
 }
 
 
-.commentForm button[type="submit"]:hover {
+.commentForm button[type="submit"]:not(:disabled):hover {
   background-color: var(--green-300);
 }
 
