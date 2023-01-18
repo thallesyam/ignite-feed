@@ -1,30 +1,45 @@
-import { useState } from "react"
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react"
 import { Author } from "../Author"
 import { Comment } from "../Comment"
 
 import style from "./style.module.css"
 
-export function Post({ post }) {
+type IAuthor = {
+  image: string
+  name: string
+  role: string
+}
+
+type IPost = {
+  post: {
+    id: number
+    author: IAuthor
+    publishedAt: Date
+    content: { type: string; content: string; attrs?: any }[]
+  }
+}
+
+export function Post({ post }: IPost) {
   const [newCommentText, setNewCommentText] = useState("")
   const [comments, setComments] = useState(["Post muito útil heim"])
 
-  function handleCreateNewComment(event) {
+  function handleCreateNewComment(event: FormEvent) {
     event.preventDefault()
 
     setComments((prevState) => [...prevState, newCommentText])
     setNewCommentText("")
   }
 
-  function handleNewCommentInvalid(event) {
-    event.target.setCustomValidity("Esse campo é obrigatório")
-  }
-
-  function handleNewCommentChange(event) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("")
     setNewCommentText(event.target.value)
   }
 
-  function onDeleteComment(commentToDelete) {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity("Esse campo é obrigatório")
+  }
+
+  function onDeleteComment(commentToDelete: string) {
     const commentsWithoutDeletedOne = comments.filter(
       (comment) => comment !== commentToDelete
     )

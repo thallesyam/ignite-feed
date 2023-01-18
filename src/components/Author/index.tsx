@@ -5,7 +5,18 @@ import { Avatar } from "../Avatar"
 
 import style from "./style.module.css"
 
-export function Author({ author, publishedAt }) {
+type IAuthor = {
+  image: string
+  name: string
+  role: string
+}
+
+type AuthorProps = {
+  author: IAuthor
+  publishedAt: Date
+}
+
+export function Author({ author, publishedAt }: AuthorProps) {
   const publishedDateFormated = format(
     publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'",
