@@ -1,8 +1,23 @@
+import { format, formatDistanceToNow } from "date-fns"
+import ptBR from "date-fns/locale/pt-BR"
+
 import { Avatar } from "../Avatar"
 
 import style from "./style.module.css"
 
-export function Author({ author, time }) {
+export function Author({ author, publishedAt }) {
+  const publishedDateFormated = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    {
+      locale: ptBR,
+    }
+  )
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  })
+
   return (
     <header className={style.headerPost}>
       <div className={style.author}>
@@ -14,8 +29,8 @@ export function Author({ author, time }) {
         </div>
       </div>
 
-      <time title={time.title} dateTime={time.dateTime}>
-        Publicado há {time.hour}
+      <time title={publishedDateFormated} dateTime={publishedAt.toISOString()}>
+        {publishedDateRelativeToNow}
       </time>
     </header>
   )
